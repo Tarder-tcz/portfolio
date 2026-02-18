@@ -149,12 +149,21 @@ export default function AboutPage() {
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>I am a huge anime fan! Some of my favorites include:</p>
+                    <p>You could say i'm a big anime fan, but to me anime is like a comfort food that you can just keep eating for a while and not get bored. That sentence seemed like I LOVE anime, but its more of like a chill session. I did get invested into some titles like: </p>
                     <ul className="list-disc list-inside space-y-1">
                         <li>Attack on Titan</li>
-                        <li>Steins;Gate</li>
-                        <li>Fullmetal Alchemist: Brotherhood</li>
-                        <li>Vinland Saga</li>
+                        <li>My Hero Academia</li>
+                        <li>Demon Slayer</li>
+                        <li>Jujutsu Kaisen, etc.</li>
+                    </ul>
+                    <p>These are just some popular titles, but I do like the more niche/underrated animes. Some genres include: </p>
+                    <ul className="list-disc list-inside spacy-y-1">
+                        <li>Fantasy</li>
+                        <li>Isekai</li>
+                        <li>Rom-Com</li>
+                        <li>Action/Adventure</li>
+                        <li>Slice of Life</li>
+                        <li>Sci-Fi, etc.</li>
                     </ul>
                 </div>
             )
@@ -165,12 +174,8 @@ export default function AboutPage() {
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>Design is where logic meets creativity. I love exploring:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                        <li>UI/UX Design Principles</li>
-                        <li>Motion Graphics</li>
-                        <li>Minimalist Aesthetics</li>
-                    </ul>
+                    <p>Design is a controversial topic for me. Even though I am a CS Student with zero to negligible background in design, which would mean my primary focus should be logical problem solving, I just can't help but see the design philosphy in each and every creation whether its hardware or software.</p>
+                    <p>Ever since I was a kid i was fascinated by infrastructure, how things were built, how they were connected, how they functioned, etc. My love for architecture bloomed when i got my hands on the game called Minecraft (I'm sure you've heard of it). I would always dream big, building massive cities with realistic infrastructure to the best of my abilities.</p>
                 </div>
             )
         },
@@ -324,7 +329,7 @@ export default function AboutPage() {
                             </h2>
                             <div className="prose dark:prose-invert text-lg md:text-xl text-neutral-600 dark:text-neutral-300 space-y-6 mt-8">
                                 <p>
-                                    My real name is Eshaan Saha, but you can call me Tarder. I am a
+                                    My name is Eshaan Saha, but you can call me Tarder. I am a
                                     passionate developer and creator from India, dedicated to building immersive
                                     digital experiences. My journey involves a deep dive into modern web
                                     technologies, constantly exploring the boundaries of what's possible in
