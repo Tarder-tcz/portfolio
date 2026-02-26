@@ -11,15 +11,21 @@ export const Card = React.memo(
         index,
         hovered,
         setHovered,
+        onCardOpenChange,
     }: {
         card: any;
         index: number;
         hovered: number | null;
         setHovered: React.Dispatch<React.SetStateAction<number | null>>;
+        onCardOpenChange?: (cardId: string | undefined, isOpen: boolean) => void;
     }) => {
         if (card.content) {
             return (
-                <Dialog>
+                <Dialog onOpenChange={(open) => {
+                    if (card.id && onCardOpenChange) {
+                        onCardOpenChange(card.id, open);
+                    }
+                }}>
                     <DialogTrigger asChild>
                         <div
                             onMouseEnter={() => setHovered(index)}
@@ -96,13 +102,14 @@ export const Card = React.memo(
 Card.displayName = "Card";
 
 type Card = {
+    id?: string;
     title: string;
     src: string;
     href?: string;
     content?: React.ReactNode;
 };
 
-export function FocusCards({ cards }: { cards: Card[] }) {
+export function FocusCards({ cards, onCardOpenChange }: { cards: Card[], onCardOpenChange?: (cardId: string | undefined, isOpen: boolean) => void }) {
     const [hovered, setHovered] = useState<number | null>(null);
 
     return (
@@ -114,6 +121,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
                     index={index}
                     hovered={hovered}
                     setHovered={setHovered}
+                    onCardOpenChange={onCardOpenChange}
                 />
             ))}
         </div>

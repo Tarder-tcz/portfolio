@@ -16,6 +16,7 @@ import { MagicTextReveal } from "@/components/ui/magic-text-reveal";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { ParallaxElement } from "@/components/ui/parallax-element";
 import StickyTabs from "@/components/ui/sticky-section-tabs";
+import TiltedCard from "@/components/ui/tilted-card";
 
 const skills = [
     { text: "HTML", Icon: Code, color: (theme: string) => theme === "dark" ? "#f97316" : "#ea580c", iconClass: "text-orange-500" },
@@ -31,6 +32,7 @@ export default function AboutPage() {
     const [phase, setPhase] = useState<"intro" | "split">("intro");
     const [triggerDisintegrate, setTriggerDisintegrate] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
+    const [activeCardId, setActiveCardId] = useState<string | undefined>(undefined);
     const { setTheme, theme } = useTheme();
     const router = useRouter();
 
@@ -180,16 +182,29 @@ export default function AboutPage() {
             )
         },
         {
+            id: "music",
             title: "Passion for Music",
             src: "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>Music is my escape. I enjoy listening to various genres, especially:</p>
+                    <p>For me, music is like an escape. It helps me relax and find out about new things. It's also a hype machine that really helps me lock in on my work or whatever it is I am doing. Some of the music genres i like/listen to daily:</p>
                     <ul className="list-disc list-inside space-y-1">
-                        <li>Indie Pop</li>
-                        <li>Lo-Fi Hip Hop</li>
-                        <li>Classical soundtracks</li>
+                        <li>Hip-Hop</li>
+                        <li>R&B</li>
+                        <li>Pop</li>
+                        <li>Dark Trap</li>
+                        <li>EDM</li>
+                        <li>Aesthetic Rap</li>
+                        <li>Alternative</li>
+                    </ul>
+                    <p>Some artists that I like:</p>
+                    <ul className="list-disc list-inside space-y-1 mb-6">
+                        <li>1nonly</li>
+                        <li>Chris Grey</li>
+                        <li>Darci</li>
+                        <li>bbno$</li>
+                        <li>Ari Abdul</li>
                     </ul>
                 </div>
             )
@@ -200,12 +215,8 @@ export default function AboutPage() {
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>Coding is my craft. I specialize in:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                        <li>React & Next.js</li>
-                        <li>Tailwind CSS</li>
-                        <li>Interactive Web Experiences</li>
-                    </ul>
+                    <p>Coding is just a part of my design philosophy. It helps me bring my ideas to life. I like solving logical problems and I like tinkering with computers all day. Hell its also one of the most important part of my life as I want to be a web or game developer.</p>
+                    <p>I think you have already scrolled past the languages I am proficient in up above. And obviously I keep myself busy trying to learn/research more and newer languages everyday.</p>
                 </div>
             )
         },
@@ -329,7 +340,7 @@ export default function AboutPage() {
                             </h2>
                             <div className="prose dark:prose-invert text-lg md:text-xl text-neutral-600 dark:text-neutral-300 space-y-6 mt-8">
                                 <p>
-                                    My name is Eshaan Saha, but you can call me Tarder. I am a
+                                    My name is Eshaan Saha. I am a
                                     passionate developer and creator from India, dedicated to building immersive
                                     digital experiences. My journey involves a deep dive into modern web
                                     technologies, constantly exploring the boundaries of what's possible in
@@ -404,7 +415,7 @@ export default function AboutPage() {
                                                 Interests
                                             </span>
                                         </h2>
-                                        <FocusCards cards={cards} />
+                                        <FocusCards cards={cards} onCardOpenChange={(id, isOpen) => setActiveCardId(isOpen ? id : undefined)} />
                                     </div>
                                 </StickyTabs.Item>
                             </StickyTabs>
@@ -488,10 +499,77 @@ export default function AboutPage() {
                         </span>
                     </h2>
                     <div className="max-w-7xl mx-auto">
-                        <FocusCards cards={cards} />
+                        <FocusCards cards={cards} onCardOpenChange={(id, isOpen) => setActiveCardId(isOpen ? id : undefined)} />
                     </div>
                 </ParallaxElement>
             </div >
+
+            {/* FLOATING MUSIC CARDS */}
+            <AnimatePresence>
+                {activeCardId === "music" && (
+                    <motion.div
+                        className="fixed inset-0 pointer-events-none z-[60]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {[
+                            {
+                                src: "https://a1.mzstatic.com/r40/Music211/v4/36/ed/58/36ed58dc-ca09-c54d-de2c-620bed1d62cd/196874039847.jpg",
+                                alt: "A$AP Rocky - Don't Be Dumb",
+                                className: "top-[10%] left-[5%] md:left-[10%] -rotate-6",
+                                amplitude: 4
+                            },
+                            {
+                                src: "https://a1.mzstatic.com/r40/Music211/v4/c8/d1/6f/c8d16ff5-a087-19a8-aaf2-cc8bd6a5c3ca/810129987614.jpg",
+                                alt: "LET THE WORLD BURN - Chris Grey",
+                                className: "bottom-[10%] left-[5%] md:left-[15%] rotate-12",
+                                amplitude: 5
+                            },
+                            {
+                                src: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=640&auto=format&fit=crop",
+                                alt: "Electronic Vibes",
+                                className: "top-[15%] right-[5%] md:right-[15%] rotate-6",
+                                amplitude: 3
+                            },
+                            {
+                                src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=640&auto=format&fit=crop",
+                                alt: "Neon Nights",
+                                className: "bottom-[15%] right-[5%] md:right-[10%] -rotate-12",
+                                amplitude: 5
+                            }
+                        ].map((album, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                                transition={{ delay: idx * 0.1, duration: 0.4 }}
+                                className={cn("absolute pointer-events-auto w-[120px] md:w-[220px] aspect-square", album.className)}
+                            >
+                                <TiltedCard
+                                    imageSrc={album.src}
+                                    altText={album.alt}
+                                    containerHeight="100%"
+                                    containerWidth="100%"
+                                    imageHeight="100%"
+                                    imageWidth="100%"
+                                    rotateAmplitude={album.amplitude}
+                                    scaleOnHover={1.1}
+                                    showMobileWarning={false}
+                                    showTooltip={true}
+                                    displayOverlayContent={true}
+                                    overlayContent={
+                                        <p className="tilted-card-demo-text text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded-xl">
+                                            {album.alt}
+                                        </p>
+                                    }
+                                />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Intro Overlay - CENTERED BIG TEXT */}
             <AnimatePresence>
