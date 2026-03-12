@@ -1,7 +1,10 @@
 
 "use client";
 
+import { Tiny5 } from "next/font/google";
 import React, { useState, useEffect } from "react";
+
+const tiny5 = Tiny5({ weight: "400", subsets: ["latin"] });
 import { flushSync } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code, Server, Palette } from "lucide-react";
@@ -216,22 +219,49 @@ export default function AboutPage() {
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>Coding is just a part of my design philosophy. It helps me bring my ideas to life. I like solving logical problems and I like tinkering with computers all day. Hell its also one of the most important part of my life as I want to be a web or game developer.</p>
+                    <p>Coding is just a part of my design philosophy. It helps me bring my ideas to life. I like solving logical problems and I like tinkering with computers all day. Heck its also one of the most important part of my life as I want to be a web or game developer.</p>
                     <p>I think you have already scrolled past the languages I am proficient in up above. And obviously I keep myself busy trying to learn/research more and newer languages everyday.</p>
                 </div>
             )
         },
         {
+            id: "games",
             title: "Interest in games",
             src: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=647&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             href: "#",
             content: (
                 <div className="space-y-4">
-                    <p>Gaming helps me unwind. I currently enjoy:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                        <li>Open World RPGs</li>
-                        <li>Strategy Games</li>
-                        <li>Indie Gems like Hollow Knight</li>
+                    <p>Gaming is my sitback, relax and wind down time. Its a double edged sword where either I relax 😌 and play story games or get down in multiplayer with my friends and have a blast 💥 or stress out 😖.</p>
+                    <p className="text-sm text-muted-foreground">why do these emojis look like this para was AI generated :(</p>
+                    <p>There are a lot of different games I enjoy. You can probably tell a lot about me just by looking at these games.</p>
+                    <ul className="list-disc list-outside ml-5 space-y-1">
+                        <li><span className={cn("text-2xl md:text-2xl text-[#91BD59]", tiny5.className)}>Minecraft</span> ⛏️ - I have probably sunk 10,000s of hours into this game ever since I was a lil dude.</li>
+                        <li><span className="text-2xl text-red-600 font-bold" style={{ fontFamily: "var(--font-vcr), monospace", letterSpacing: "1px" }}>ULTRAKILL</span> - If you don't know what this game is, better play it to found out or just watch a YouTube video, upto you.</li>
+                        <li>
+                            <span
+                                className="text-lg font-bold text-white uppercase inline-block drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+                                style={{
+                                    fontFamily: "var(--font-trajan), serif",
+                                    letterSpacing: "-1px",
+                                    transform: "scaleY(1.4) scaleX(1)",
+                                    transformOrigin: "left center"
+                                }}
+                            >
+                                Hollow Knight
+                            </span> - One of my friends introduced me to this game. Safe to say I went down the spiral hole for this game. I have never played a Metroidvania and this was my first. Yes it's good lol.
+                        </li>
+                        <li>
+                            <span
+                                className="text-lg text-[#f69327]"
+                                style={{
+                                    fontFamily: "var(--font-full-automation), serif",
+                                    letterSpacing: "1px",
+                                    transform: "scaleY(1) scaleX(1)",
+                                }}
+                            >
+                                Factorio
+                            </span> - A 2D factory building sim with infinite possibilities. I have sunk 1000s of hours into this. Really feels like a PCB building game lol.
+                        </li>
                     </ul>
                 </div>
             )
@@ -509,7 +539,7 @@ export default function AboutPage() {
             <AnimatePresence>
                 {activeCardId === "music" && (
                     <motion.div
-                        className="fixed inset-0 pointer-events-none z-[60]"
+                        className="fixed inset-0 pointer-events-none z-[60] hidden xl:block"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -523,18 +553,18 @@ export default function AboutPage() {
                             },
                             {
                                 src: "https://a1.mzstatic.com/r40/Music211/v4/c8/d1/6f/c8d16ff5-a087-19a8-aaf2-cc8bd6a5c3ca/810129987614.jpg",
-                                alt: "LET THE WORLD BURN - Chris Grey",
+                                alt: "LET THE WORLD BURN (Remix) - Chris Grey",
                                 className: "bottom-[10%] left-[5%] md:left-[15%] rotate-12",
                                 amplitude: 5
                             },
                             {
-                                src: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=640&auto=format&fit=crop",
-                                alt: "Dracula - Tame Impala",
+                                src: "https://a1.mzstatic.com/r40/Music211/v4/0b/6c/07/0b6c07e3-764b-cf6f-1769-00d9f1ef2d5f/054391285690.jpg",
+                                alt: "Falling - 1nonly",
                                 className: "top-[15%] right-[5%] md:right-[15%] rotate-6",
                                 amplitude: 3
                             },
                             {
-                                src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=640&auto=format&fit=crop",
+                                src: "https://a1.mzstatic.com/r40/Music125/v4/66/8c/c6/668cc6ae-8176-7180-2749-92d983852f1a/193436257831_01_img001.jpg",
                                 alt: "Rose Petals - Darci",
                                 className: "bottom-[15%] right-[5%] md:right-[10%] -rotate-12",
                                 amplitude: 5
@@ -563,6 +593,73 @@ export default function AboutPage() {
                                     overlayContent={
                                         <p className="tilted-card-demo-text text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded-xl">
                                             {album.alt}
+                                        </p>
+                                    }
+                                />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* FLOATING GAMING CARDS */}
+            <AnimatePresence>
+                {activeCardId === "games" && (
+                    <motion.div
+                        className="fixed inset-0 pointer-events-none z-[60] hidden xl:block"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {[
+                            {
+                                src: "https://orig00.deviantart.net/26db/f/2015/326/4/f/minecraft_grass_block_by_flutterspon-d9hlkmq.jpg",
+                                alt: "Minecraft",
+                                className: "top-[10%] left-[5%] md:left-[10%] -rotate-6",
+                                amplitude: 4
+                            },
+                            {
+                                src: "https://m.media-amazon.com/images/M/MV5BNGIyZDE4OTYtNjBhOS00NzFkLTkyYWMtYzAzNWUxZThmMDBlXkEyXkFqcGc@._V1_.jpg",
+                                alt: "ULTRAKILL",
+                                className: "bottom-[10%] left-[5%] md:left-[15%] rotate-12",
+                                amplitude: 5
+                            },
+                            {
+                                src: "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg",
+                                alt: "Hollow Knight",
+                                className: "top-[15%] right-[5%] md:right-[15%] rotate-6",
+                                amplitude: 3
+                            },
+                            {
+                                src: "https://factorio.com/static/img/space-age-capsule.png",
+                                alt: "Factorio",
+                                className: "bottom-[15%] right-[5%] md:right-[10%] -rotate-12",
+                                amplitude: 5
+                            }
+                        ].map((game, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                                transition={{ delay: idx * 0.1, duration: 0.4 }}
+                                className={cn("absolute pointer-events-auto w-[120px] md:w-[220px] aspect-square", game.className)}
+                            >
+                                <TiltedCard
+                                    imageSrc={game.src}
+                                    altText={game.alt}
+                                    containerHeight="100%"
+                                    containerWidth="100%"
+                                    imageHeight="100%"
+                                    imageWidth="100%"
+                                    rotateAmplitude={game.amplitude}
+                                    scaleOnHover={1.1}
+                                    showMobileWarning={false}
+                                    showTooltip={true}
+                                    displayOverlayContent={true}
+                                    overlayContent={
+                                        <p className="tilted-card-demo-text text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2 py-1 rounded-xl">
+                                            {game.alt}
                                         </p>
                                     }
                                 />
