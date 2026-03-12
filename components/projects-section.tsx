@@ -2,24 +2,17 @@
 
 import React from "react";
 import { PixelCanvas } from "@/components/ui/pixel-canvas";
-import { Layout, Bot, Smartphone } from "lucide-react";
+import { Layout, ShoppingCart, Smartphone, Bot } from "lucide-react";
 import Link from "next/link";
 
 export function ProjectsSection() {
     return (
-        <div className="pt-10 pb-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4 mx-auto px-8">
+        <div className="pt-10 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full max-w-5xl mx-auto px-8">
             <PixelCard
                 title="Portfolio Website (This)"
                 icon={<Layout className="w-20 h-20 text-muted-foreground transition-all duration-300 ease-out group-hover:scale-110 group-hover:text-[var(--active-color)]" />}
                 colors={["#e0f2fe", "#7dd3fc", "#0ea5e9"]}
                 activeColor="#0ea5e9"
-                href="#"
-            />
-            <PixelCard
-                title="AI Agent Integration"
-                icon={<Bot className="w-20 h-20 text-muted-foreground transition-all duration-300 ease-out group-hover:scale-110 group-hover:text-[var(--active-color)]" />}
-                colors={["#fce7f3", "#fbcfe8", "#db2777"]}
-                activeColor="#db2777"
                 href="#"
             />
             <PixelCard
@@ -31,6 +24,21 @@ export function ProjectsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
             />
+            <PixelCard
+                title="AI Chatbot"
+                icon={<Bot className="w-20 h-20 text-muted-foreground transition-all duration-300 ease-out group-hover:scale-110 group-hover:text-[var(--active-color)]" />}
+                colors={["#fce7f3", "#fbcfe8", "#db2777"]}
+                activeColor="#db2777"
+                href="#"
+            />
+            <PixelCard
+                title="E-commerce Website"
+                icon={<ShoppingCart className="w-20 h-20 text-muted-foreground transition-all duration-300 ease-out group-hover:scale-110 group-hover:text-[var(--active-color)]" />}
+                colors={["#fce7f3", "#fbcfe8", "#db2777"]}
+                activeColor="#db2777"
+                href="#"
+            />
+
         </div>
     );
 }

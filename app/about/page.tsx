@@ -26,6 +26,7 @@ const skills = [
     { text: "Java", Icon: Code, color: (theme: string) => theme === "dark" ? "#ef4444" : "#dc2626", iconClass: "text-red-500" },
     { text: "Python", Icon: Code, color: (theme: string) => theme === "dark" ? "#3b82f6" : "#2563eb", iconClass: "text-blue-500" },
     { text: "MySQL", Icon: Server, color: (theme: string) => theme === "dark" ? "#f97316" : "#ea580c", iconClass: "text-orange-500" },
+    { text: "TypeScript", Icon: Code, color: (theme: string) => theme === "dark" ? "#2563eb" : "#2563eb", iconClass: "text-blue-500" },
 ];
 
 export default function AboutPage() {
@@ -528,13 +529,13 @@ export default function AboutPage() {
                             },
                             {
                                 src: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=640&auto=format&fit=crop",
-                                alt: "Electronic Vibes",
+                                alt: "Dracula - Tame Impala",
                                 className: "top-[15%] right-[5%] md:right-[15%] rotate-6",
                                 amplitude: 3
                             },
                             {
                                 src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=640&auto=format&fit=crop",
-                                alt: "Neon Nights",
+                                alt: "Rose Petals - Darci",
                                 className: "bottom-[15%] right-[5%] md:right-[10%] -rotate-12",
                                 amplitude: 5
                             }
