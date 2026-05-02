@@ -15,7 +15,7 @@ import { useTheme } from "next-themes";
 import DockMorph from "@/components/ui/dock-morph";
 import { useRouter } from "next/navigation";
 import VaporizeTextCycle, { Tag } from "@/components/ui/vapour-text-effect";
-import { MagicTextReveal } from "@/components/ui/magic-text-reveal";
+//import { MagicTextReveal } from "@/components/ui/magic-text-reveal";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { ParallaxElement } from "@/components/ui/parallax-element";
 import StickyTabs from "@/components/ui/sticky-section-tabs";
@@ -60,6 +60,14 @@ export default function AboutPage() {
     }, []);
 
     useEffect(() => {
+        // Run once on mount to check if animation has already played this session
+        const hasPlayed = sessionStorage.getItem("about_animation_played");
+        if (hasPlayed === "true") {
+            setPhase("split");
+        }
+    }, []);
+
+    useEffect(() => {
         if (phase === "intro") {
             window.scrollTo(0, 0);
             document.body.style.overflow = "hidden";
@@ -76,6 +84,8 @@ export default function AboutPage() {
     }, [phase]);
 
     useEffect(() => {
+        if (phase !== "intro") return; // Don't run timers if we've skipped the intro
+
         // 1. Reveal completes approx 1s + hold time.
         // 2. We want to hold for 2.5s AFTER reveal.
         // Reveal duration is hard to know exactly unless we track it, but let's assume ~1.5s total for reveal.
@@ -89,13 +99,14 @@ export default function AboutPage() {
         // After disintegration triggers (takes ~1s), switch to split phase
         const splitTimer = setTimeout(() => {
             setPhase("split");
+            sessionStorage.setItem("about_animation_played", "true");
         }, 3500 + 1000); // Wait for vaporize duration
 
         return () => {
             clearTimeout(holdTimer);
             clearTimeout(splitTimer);
         };
-    }, []);
+    }, [phase]);
 
     const ThemeIcon = ({ className }: { className?: string }) => {
         return (
@@ -395,15 +406,13 @@ export default function AboutPage() {
                                 <h3 className="text-3xl font-bold mb-8 text-neutral-800 dark:text-neutral-100">My Skills</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                                     {skills.map((skill) => (
-                                        <MagicTextReveal
+                                        <div 
                                             key={skill.text}
-                                            text={skill.text}
-                                            fontSize={32}
-                                            color={skill.color(theme || "light")} // Fallback for safety
-                                            className="w-full h-[200px]"
+                                            className="w-full h-[160px] flex items-center justify-center gap-4 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
                                         >
-                                            <skill.Icon className={cn("w-8 h-8 ml-2", skill.iconClass)} />
-                                        </MagicTextReveal>
+                                            <skill.Icon className={cn("w-10 h-10", skill.iconClass)} style={{ color: skill.color(theme || "light") }} />
+                                            <span className="text-3xl font-bold" style={{ color: skill.color(theme || "light") }}>{skill.text}</span>
+                                        </div>
                                     ))}
                                 </div>
                             </ParallaxElement>
@@ -425,15 +434,13 @@ export default function AboutPage() {
                                 <StickyTabs.Item title="My Skills" id="skills">
                                     <div className="grid grid-cols-1 gap-4 w-full">
                                         {skills.map((skill) => (
-                                            <MagicTextReveal
+                                            <div 
                                                 key={skill.text}
-                                                text={skill.text}
-                                                fontSize={32}
-                                                color={skill.color(theme || "light")}
-                                                className="w-full h-[150px]"
+                                                className="w-full h-[120px] flex items-center justify-center gap-3 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-sm"
                                             >
-                                                <skill.Icon className={cn("w-8 h-8 ml-2", skill.iconClass)} />
-                                            </MagicTextReveal>
+                                                <skill.Icon className={cn("w-8 h-8", skill.iconClass)} style={{ color: skill.color(theme || "light") }} />
+                                                <span className="text-2xl font-bold" style={{ color: skill.color(theme || "light") }}>{skill.text}</span>
+                                            </div>
                                         ))}
                                     </div>
                                 </StickyTabs.Item>
