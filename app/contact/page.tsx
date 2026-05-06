@@ -122,23 +122,19 @@ export default function ContactPage() {
         setSubmitStatus("idle");
 
         try {
-            // Placeholder keys from env
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "default_service";
-            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "default_template";
-            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "default_public_key";
+            const SERVICE_ID = "service_g8iujhd";
+            const TEMPLATE_ID = "template_19ur63m";
+            const PUBLIC_KEY = "t44gz8TEyBJ0Qd1pd";
 
             if (formRef.current) {
-                // To actually send emails, you need valid EmailJS credentials. 
-                // This will fail with a 400 error if placeholders are used, but we catch it.
-                await emailjs.sendForm(serviceId, templateId, formRef.current, {
-                    publicKey: publicKey,
+                await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, {
+                    publicKey: PUBLIC_KEY,
                 });
                 setSubmitStatus("success");
                 formRef.current.reset();
             }
-        } catch (error) {
-            console.error("EmailJS Error:", error);
-            // Even if it fails due to placeholders, we show error for realism
+        } catch (error: any) {
+            console.error("EmailJS Error:", error?.text || error?.message || error);
             setSubmitStatus("error");
         } finally {
             setIsSubmitting(false);
@@ -167,7 +163,7 @@ export default function ContactPage() {
                     animation-delay: 1.25s;
                 }
             `}</style>
-            
+
             {/* Background Gradients */}
             <div className="absolute inset-0 pointer-events-none -z-20">
                 <div
@@ -198,7 +194,7 @@ export default function ContactPage() {
                         stroke="none"
                     />
                     <text className="text-[120px] font-black tracking-widest fill-zinc-800/20 dark:fill-zinc-200/20 uppercase">
-                        <motion.textPath 
+                        <motion.textPath
                             href="#snakePath"
                             initial={{ startOffset: "0%" }}
                             animate={{ startOffset: "-50%" }}
@@ -316,7 +312,7 @@ export default function ContactPage() {
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
                                 />
                                 {/* Text - Fades in */}
-                                <motion.div 
+                                <motion.div
                                     className="relative z-10 font-bold uppercase tracking-wider text-sm md:text-base transition-colors duration-300"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -357,29 +353,29 @@ export default function ContactPage() {
 
                                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                                     <div>
-                                        <label htmlFor="user_name" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                                        <label htmlFor="name" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                                             Name
                                         </label>
                                         <input
                                             type="text"
-                                            id="user_name"
-                                            name="user_name"
+                                            id="name"
+                                            name="name"
                                             required
                                             className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-zinc-900 dark:text-zinc-100"
-                                            placeholder="John Doe"
+                                            placeholder="Please enter your name"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="user_email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                                        <label htmlFor="email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                                             Email
                                         </label>
                                         <input
                                             type="email"
-                                            id="user_email"
-                                            name="user_email"
+                                            id="email"
+                                            name="email"
                                             required
                                             className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-zinc-900 dark:text-zinc-100"
-                                            placeholder="john@example.com"
+                                            placeholder="Please enter your email"
                                         />
                                     </div>
                                     <div>
