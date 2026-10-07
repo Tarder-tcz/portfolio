@@ -90,7 +90,7 @@ function LegendCard() {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <span className="text-base sm:text-lg font-bold text-foreground">Project Status</span>
-                        <span className="text-xs text-muted-foreground font-normal">(On hover)</span>
+                        <span className="text-xs text-muted-foreground font-normal">On hover</span>
                     </div>
                     <span className="text-xs font-mono text-muted-foreground/70 uppercase tracking-widest">
                         Legend
