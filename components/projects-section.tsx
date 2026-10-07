@@ -27,8 +27,8 @@ export function ProjectsSection() {
             <PixelCard
                 title="Forum Website"
                 icon={<MessageSquare className="w-20 h-20 text-muted-foreground transition-all duration-300 ease-out group-hover:scale-110 group-hover:text-[var(--active-color)]" />}
-                colors={["#e0f2fe", "#bae6fd", "#0284c7"]}
-                activeColor="#0284c7"
+                colors={["#e0f2fe", "#fde047", "#eab308"]}
+                activeColor="#eab308"
                 href="https://gucampusbridge-frontend.onrender.com/"
                 target="_blank"
                 rel="noopener noreferrer"
